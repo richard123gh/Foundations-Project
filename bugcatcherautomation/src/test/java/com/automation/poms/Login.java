@@ -13,7 +13,7 @@ public class Login {
     // needed to correctly grab information from login webpage
     // private because driver will be used internally (in the class) to interact with things in the pom
     private WebDriver driver;
-    
+     
     // fields to represent user actions
     // public because they will be accessed in the steps
     @FindBy(id = "username")

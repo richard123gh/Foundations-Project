@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class Manager {
-     
+      
     private WebDriver driver;
 
     @FindBy(id = "defectInput")
@@ -36,11 +36,7 @@ public class Manager {
         this.assignButton.click();
     }
 
-    // public void alert(){
-    //     driver.switchTo().alert().accept();
-    // }
+    public void alert(){
+        driver.switchTo().alert().accept();
+    }
 }
-
-// confirm element is present
-// wait until expected condition is met where the element is located
-// check that the message in the alert matches

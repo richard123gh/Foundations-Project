@@ -13,25 +13,11 @@
                 <th>Description</th>
                 <th>Custodian</th>>
                 <th>Status</th>
-                <!-- <th>Result</th> -->
             </tr>
         </thead>
         <tbody id="tbody">
         </tbody>
     </table>
-    <!-- <br>
-    <br>
-    <br>
-    <h2>Valid Requestitions</h2>
-    <table id="inProgTable">
-            <thead>
-                <tr>
-                    <th>Requisition #</th>
-                    <th>Description</th>
-                    <th>Result</th>
-                </tr>
-            </thead>
-    </table> -->
 </body>
 <script>
     async function printDefects(){
@@ -44,7 +30,7 @@
 
         if(httpResponse.status === 200){
             let responseBody = await httpResponse.json();
-
+            
             for(let i = 0; i < responseBody.length; i++){            
                 let table = document.getElementById("table");
                 let tr = document.createElement("tr");
@@ -55,13 +41,13 @@
                    `<td id = "defId">${submittedDefects["defectId"]}</td>
                     <td id = "defectName">${submittedDefects["desc"]}</td>
                     <td id = "user">${submittedDefects["assignedTo"]}</td>
-                    <td><select id = "${submittedDefects["defectId"]}"> 
-                        <option>Pending</option>
-                        <option>Accepted</option>
-                        <option>Declined</option>
-                        <option>Fixed</option>
-                        <option>Shelved</option>
-                        <option>Rejected</option>
+                    <td><select class = "selection" id = "${submittedDefects["defectId"]}"> 
+                        <option id = "pending">Pending</option>
+                        <option id = "accepted">Accepted</option>
+                        <option id = "declined">Declined</option>
+                        <option id = "fixed">Fixed</option>
+                        <option id = "shelved">Shelved</option>
+                        <option id = "rejected">Rejected</option>
                     </select></td>
                     <button onclick="updateDefect(${submittedDefects["defectId"]})">update defect</button>`
             }
@@ -90,20 +76,11 @@
 
 //5 display results of request
         if(httpResponse.status === 204){
-            alert(`Defect ${defIdParameter} updated to ${document.getElementById(defIdParameter).value}.`)
+            alert(`Defect updated to ${document.getElementById(defIdParameter).value}.`)
         } else {
             console.log("everything is not supposed to be like this")
         }
     }
 
-
-
-
-
-
-
-
-//...if the results for accepted defects aren't (?) in the api...where does the information go?
-//...why aren't the code snippets from the other feature files showing up after mvn verify
 </script>
 </html>

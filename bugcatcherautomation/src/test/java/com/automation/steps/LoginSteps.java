@@ -14,8 +14,8 @@ public class LoginSteps {
     //user agnostic steps
     @Given("the employee is on the login page")     
     public void the_employee_is_on_the_login_page() {
-        TestRunner.driver.get("File://C:/git/REV/projects/foundations/Login-automation/bugcatcherautomation/src/test/resources/webpages/login.html");
-    }
+        TestRunner.driver.get("File://C:/git/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/login.html");
+    } 
     @When("the employee clicks the login button")   
     public void the_employee_clicks_the_login_button() {
         TestRunner.login.clickButton();

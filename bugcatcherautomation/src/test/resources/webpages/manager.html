@@ -52,7 +52,9 @@
                 alert(`${responseBody.desc} has been successfully assigned to ${"William Vickers"}`)
             } else if(responseBody.assignedTo === "dale75p"){
                 alert(`${responseBody.desc} has been successfully assigned to ${"Dale Pyse"}`)
-        } else {
+            } else if(responseBody.assignedTo === "Autotester"){
+                alert(`${responseBody.desc} has been successfully assigned to Autotester`)
+            } else {
             let responseBody = await httpResponse.json();
             alert(responseBody.detail);
             }
