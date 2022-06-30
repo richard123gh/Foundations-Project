@@ -1,0 +1,73 @@
+Mananger Acceptance Criteria
+#1
+FEATURE: Managers should be able to log in to access their home page
+SCENARIO: As a manager, I want to sign in so i can view my custom home page
+GIVEN   the manager is on the login page
+WHEN    the manager enters the correct username
+WHEN    the manager enters the correct password
+WHEN    the manager clicks the login button
+THEN    the manager should be redirected to the manager home page
+
+#2
+FEATURE: Managers should be able to create defects so they can assign them to an employee
+SCENARIO: As a manager, i want to be able to create defects so i can assign them to an employee
+GIVEN   the manager is on their correct home page
+WHEN    the manager enters a defect
+WHEN    the manager selects an employee
+WHEN    the manager clicks the submit button
+THEN    the defect should appear with status pending in the testers home page
+THEN    the manager should see a popup that says defect assigned
+
+
+
+
+
+Tester Acceptance Criteria
+
+#1
+FEATURE: Testers should be able to log in to access their home page
+SCENARIO: As a tester, I want to sign in so i can view my custom home page
+GIVEN   the tester is on the login page
+WHEN    the tester enters the correct username
+WHEN    the tester enters the correct password
+WHEN    the tester clicks the login button
+THEN    the tester should be redirected to the tester home page
+
+#2
+FEATURE: Testers should be able to view defects so they can begin working on them
+SCENARIO: As a tester, i want to view defects assigned to me so i can begin working on them
+GIVEN   the tester is on their correct home page
+WHEN    the tester looks at the table
+THEN    the tester should see pending defects assigned to them
+
+#3
+FEATURE: Testers should be able to update defects so they can monitor their progress
+3.1
+SCENARIO: As a tester, i want to be able to change assigned defects deemed valid from pending to accepted
+GIVEN   the tester is on their correct home page
+WHEN    the tester selects accepted from the status dropdown menu
+THEN    the status should change from pending to accepted
+
+3.2
+SCENARIO: as a tester, i want to be able to change assigned defects deemed low priority from pending to declined
+GIVEN   the tester is on their correct home page
+WHEN    the tester selects declined from the status dropdown menu
+THEN    the status should change from pending to declined
+
+3.3
+SCENARIO: as a tester, i want to be able to submit results from accepted defects as rejected
+GIVEN   the tester is on their correct home page
+WHEN    the tester selects rejected in results
+THEN    the results should be updated to rejected
+
+3.4
+SCENARIO: as a tester, i want to be able to submit results from accepted defects as fixed
+GIVEN   the tester is on their correct home page
+WHEN    the tester selects fixed in results
+THEN    the results should be updated to fixed
+
+3.5
+SCENARIO: as a tester, i want to be able to submit results from accepted defects as shelved
+GIVEN   the tester is on their correct home page
+WHEN    the tester selects shelved in results
+THEN    the results should be updated to shelved

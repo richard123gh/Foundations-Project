@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Custodians</title>
+</head>
+<body>
+    <h1>Faint Sunset Estates</h1>
+    <h2>Open Requisitions</h2>
+    <table id="table">
+        <thead id="thead">
+            <tr>
+                <th>Requisition #</th>
+                <th>Description</th>
+                <th>Custodian</th>>
+                <th>Status</th>
+                <!-- <th>Result</th> -->
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+    <!-- <br>
+    <br>
+    <br>
+    <h2>Valid Requestitions</h2>
+    <table id="inProgTable">
+            <thead>
+                <tr>
+                    <th>Requisition #</th>
+                    <th>Description</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+    </table> -->
+</body>
+<script>
+    async function printDefects(){
+        let config = {
+            method:"GET",
+            headers:{'Content-Type':"application/json"}, 
+        }
+
+        let httpResponse = await fetch("https://bugcatcher.coe.revaturelabs.com/23/defects",config);
+
+        if(httpResponse.status === 200){
+            let responseBody = await httpResponse.json();
+
+            for(let i = 0; i < responseBody.length; i++){            
+                let table = document.getElementById("table");
+                let tr = document.createElement("tr");
+                table.appendChild(tr);
+                
+                let submittedDefects = responseBody[i];
+                tr.innerHTML = 
+                   `<td id = "defId">${submittedDefects["defectId"]}</td>
+                    <td id = "defectName">${submittedDefects["desc"]}</td>
+                    <td id = "user">${submittedDefects["assignedTo"]}</td>
+                    <td><select id = "${submittedDefects["defectId"]}"> 
+                        <option>Pending</option>
+                        <option>Accepted</option>
+                        <option>Declined</option>
+                        <option>Fixed</option>
+                        <option>Shelved</option>
+                        <option>Rejected</option>
+                    </select></td>
+                    <button onclick="updateDefect(${submittedDefects["defectId"]})">update defect</button>`
+            }
+        }
+    }
+    printDefects();
+
+    async function updateDefect(defIdParameter){ 
+//1 create object for request
+        let defectStatus = {
+            status: document.getElementById(defIdParameter).value
+        }
+
+//2 convert object to json
+        let updateJSON = JSON.stringify(defectStatus);
+
+//3 configure request for json object     
+        let config = {
+            method:"PATCH", 
+            headers:{'Content-Type':"application/json"},
+            body:updateJSON
+        }
+        
+//4 make request
+        let httpResponse = await fetch(`https://bugcatcher.coe.revaturelabs.com/23/defects/${defIdParameter}`,config);
+
+//5 display results of request
+        if(httpResponse.status === 204){
+            alert(`Defect ${defIdParameter} updated to ${document.getElementById(defIdParameter).value}.`)
+        } else {
+            console.log("everything is not supposed to be like this")
+        }
+    }
+
+
+
+
+
+
+
+
+//...if the results for accepted defects aren't (?) in the api...where does the information go?
+//...why aren't the code snippets from the other feature files showing up after mvn verify
+</script>
+</html>

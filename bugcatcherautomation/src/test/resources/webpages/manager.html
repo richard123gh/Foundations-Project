@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Managers</title>
+</head>
+<body>
+    <h1>Faint Sunset Estates Requisition Form</h1>
+    <h2>Please enter a description of the required maintenance:</h2>
+    <input type="text" id="defectInput">
+    <br>
+    <!--alternatively a dropdown can be used with the testernames hardcoded, and the element id used to assign-->
+    <h2>Please enter the username of the custodian you want to assign:</h2>
+    <p>1. goodgamegalen</p>
+    <p>2. theBigRV</p>
+    <p>3. wvick</p>
+    <p>4. dale75p</p>
+    <input type="text" id="testerNames">
+    <br>
+    <button onclick="assignDefect()">submit</button>
+</body>
+<script>
+    async function assignDefect(){
+        let defectInfo = {
+            defectId: 0,
+            assignedTo: document.getElementById("testerNames").value,
+            dateReported: 0,
+            status: "Pending",
+            desc: document.getElementById("defectInput").value,
+            stepsToReproduce: "string",
+            severity: "Low",
+            priority: "Low"
+        }
+//2
+        let defectJSON = JSON.stringify(defectInfo);
+//3
+        let config = {
+            method:"POST", 
+            headers:{'Content-Type':"application/json"},
+            body:defectJSON
+        }
+//4
+        let httpResponse = await fetch("https://bugcatcher.coe.revaturelabs.com/23/defects",config);
+
+        if(httpResponse.status === 201){
+            let responseBody = await httpResponse.json();
+
+            if(responseBody.assignedTo === "goodgamegalen"){
+                alert(`${responseBody.desc} has been successfully assigned to ${"Galen Gillens"}`)
+            } else if(responseBody.assignedTo === "theBigRV"){
+                alert(`${responseBody.desc} has been successfully assigned to ${"Ronnie Vaughan"}`)
+            } else if(responseBody.assignedTo === "wvick"){
+                alert(`${responseBody.desc} has been successfully assigned to ${"William Vickers"}`)
+            } else if(responseBody.assignedTo === "dale75p"){
+                alert(`${responseBody.desc} has been successfully assigned to ${"Dale Pyse"}`)
+        } else {
+            let responseBody = await httpResponse.json();
+            alert(responseBody.detail);
+            }
+        }
+    }
+</script>
+</html>
+
