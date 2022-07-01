@@ -15,7 +15,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "classpath:features", glue = "com/automation/steps", plugin = {"pretty", "html:src/test/resources/reports/html-reports.html"})
+@CucumberOptions(features = "classpath:features", glue = "com/automation/steps")
 public class TestRunner {
     
     public static WebDriver driver;
