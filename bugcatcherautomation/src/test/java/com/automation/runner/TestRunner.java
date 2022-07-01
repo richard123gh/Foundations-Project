@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-// import org.openqa.selenium.support.ui.Select;
  
 import com.automation.poms.Login;
 import com.automation.poms.Manager;
@@ -33,7 +32,7 @@ public class TestRunner {
         login = new Login(driver);
         manager = new Manager(driver);
         tester = new Tester(driver);
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 1);
     }
 
     @AfterClass // this makes the method execute after all the steps

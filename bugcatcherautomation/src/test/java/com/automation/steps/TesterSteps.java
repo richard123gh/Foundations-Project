@@ -31,7 +31,7 @@ public class TesterSteps {
 
     @When("the tester selects declined from the status dropdown menu")
     public void the_tester_selects_declined_from_the_status_dropdown_menu() {
-        TestRunner.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        TestRunner.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         Select updateDefect = new Select(TestRunner.driver.findElement(By.className("selection")));
         updateDefect.selectByVisibleText("Declined");
     
